@@ -4,7 +4,7 @@ setup(
   packages = ['whatsall'],   
   version = '1',      
   license='MIT',        
-  description = 'Automate sending messages on whatsapp to n number of users without even saving the number',   
+  description = 'Automate sending messages on whatsapp to unlimited users without even saving the number',   
   author = 'Divesh Lunker',             
   author_email = 'diveshdj92@gmail.com',      
   url = 'https://github.com/diveshlunker/whatsall',
