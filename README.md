@@ -1,12 +1,12 @@
 # whatsAll
 WhatsAll is a Python library to automate sending messages to unlimited number of people without even saving the contact number.
 
-##Installation
+## Installation
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install whatsall
 ```bash
 pip install whatsall
 ```
-##Requirements
+## Requirements
 - Python 3 - Download it [here]()
 - Google chrome driver - Download the driver [here](https://chromedriver.chromium.org/downloads). Unzip and place the google driver at this location:- __C:\Drivers\chromeDriver\chromedriver.exe__ for easy use of the library
 - selenium library - install by 
@@ -15,13 +15,13 @@ pip install selenium
 ```
 - Check the other basic libraries from [requirements.txt](https://github.com/diveshlunker/whatsall/blob/master/requirements.txt) which should be generally pre installed but in case it isn't, install it.
 
-##Features
+## Features
 - Automate messaging to unlimited users.
 - No need to save the contact in order to message the user.
 - Send messages to people of any country just by specifying the country code.
 - You can add multiple messages.
 
-##Usage
+## Usage
 ```python
 import whatsall.whatsall as whatsall
 
@@ -65,18 +65,18 @@ Follow the below instructions for easy use of this library
     
 ```
         
-##Terms and Conditions
+## Terms and Conditions
 - This library is unofficial and is no way responsible for any legal issues if happen.
 - This library should not be used for any illeagal purpose and is made merely for education purpose and for development.
 - For any major changes, issue must be raised first.
 - This library should not be used for spamming else, if blocked by whatsapp, this library should not be held responsible
 
 
-##Contributing
+## Contributing
 Pull requests are welcome. 
 
-##Version
+## Version
 Stable version - 1
 
-##License
+## License
 [MIT](https://github.com/diveshlunker/whatsall/blob/master/LICENSE)
