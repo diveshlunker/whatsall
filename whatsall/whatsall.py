@@ -161,4 +161,10 @@ def stop():
     driver.close()
     total_check = False
 
+def main():
+    start()
+    
+if __name__ == "__main__":
+    main()
+
 
