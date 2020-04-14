@@ -8,6 +8,11 @@ country_code = "91"
 driver="" 
 c=1
 
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import time
+import os
+
 def requirements_check(l):
     global c
     try:
@@ -15,17 +20,12 @@ def requirements_check(l):
         from selenium.webdriver.common.keys import Keys
         import time
         import os
-        import sys
-        import subprocess
-        import urllib
-        from pathlib import Path
         return(1)
     except:
         print("Install all the required libraries using 'pip install -r requirements.txt'")
         return(0)
 
 def driver_check(s):
-    import os
     my_file = os.path.exists(s)
     if my_file:
         return True
