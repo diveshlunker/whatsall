@@ -2,13 +2,13 @@ from distutils.core import setup
 setup(
   name = 'whatsall',         
   packages = ['whatsall'],   
-  version = '0.0.5',      
+  version = '0.0.6',      
   license='MIT',        
   description = 'Automate sending messages on whatsapp to n number of users without even saving the number',   
   author = 'Divesh Lunker',             
   author_email = 'diveshdj92@gmail.com',      
   url = 'https://github.com/diveshlunker/whatsall',
-  download_url = 'https://github.com/diveshlunker/whatsall/archive/0.0.5.tar.gz',   
+  download_url = 'https://github.com/diveshlunker/whatsall/archive/0.0.6.tar.gz',   
   keywords = ['whatsapp', 'automated messaging', 'whatsapp web','whatspip'], 
   install_requires=[ 
           "selenium"

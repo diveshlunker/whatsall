@@ -25,8 +25,9 @@ def requirements_check(l):
         return(0)
 
 def driver_check(s):
-    my_file = Path(s)
-    if my_file.exists():
+    import os
+    my_file = os.path.exists(s)
+    if my_file:
         return True
     else:
         print("Download the Chrome driver exe file -> unzip it -> see the location -> continue.")
@@ -39,13 +40,13 @@ def startdriver(location):
 def total_check(diff_location):
     global location
     location = diff_location
-    check = requirements_check(["time","os","sys","subprocess","selenium","urllib","pathlib"])
+    check = requirements_check(["time","os","sys","selenium","urllib","pathlib"])
     if(check==0):
         print("Thank you!")
     else:
         check2 = driver_check(location)
         if(check2):
-            print("Opening whatsapp...")
+            print("Opening Whatsapp...")
             startdriver(location)
         else:
             print("Download the Chrome driver exe file and unzip it and save it and then continue.")
@@ -63,9 +64,9 @@ def start(diff_location="C:\Drivers\chromeDriver\chromedriver.exe"):
         
 def helpdesk(self):
     print("--------------------------------------------------------")
-    print("Welcome to whatspip Automated Messaging Library")
+    print("Welcome to Whatsapp Automated Messaging Library")
     print("Developed by Divesh Lunker")
-    print("Contribute @diveshlunker/whatspip on github")
+    print("Contribute @diveshlunker/whatsapp on github")
     print("--------------------------------------------------------")
     print("This library is totally unofficial and use it totally at your own risk")
     print("We do not take any responsibility for anything if goes wrong")
@@ -93,7 +94,7 @@ def send_message():
         global ini_time
         ini_time = 20
         for i in contacts:
-            
+            print("https://web.whatsapp.com/send?phone="+str(i)+"&text&source&data&app_absent")
             driver.get("https://web.whatsapp.com/send?phone="+str(i)+"&text&source&data&app_absent")
             time.sleep(ini_time)
             ini_time = 5
@@ -160,11 +161,5 @@ def stop():
     global total_check
     driver.close()
     total_check = False
-
-def main():
-    start()
-    
-if __name__ == "__main__":
-    main()
-
+start()
 
