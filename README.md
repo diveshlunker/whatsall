@@ -7,7 +7,7 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to install whatsal
 pip install whatsall
 ```
 ## Requirements
-- Python 3 - Download it [here]()
+- Python 3 - Download it [here](https://www.python.org/downloads/)
 - Google chrome driver - Download the driver [here](https://chromedriver.chromium.org/downloads). Unzip and place the google driver at this location:- __C:\Drivers\chromeDriver\chromedriver.exe__ for easy use of the library
 - selenium library - install by 
 ```bash
@@ -20,6 +20,11 @@ pip install selenium
 - No need to save the contact in order to message the user.
 - Send messages to people of any country just by specifying the country code.
 - You can add multiple messages.
+
+## Features to be added
+- Enabling media and document share to people.
+- Instead of a list as parameter for messages and contact numbers, reading different documents and retreiving the numbers.
+- Handling errors in case the internet is slow or the number is invalid.
 
 ## Usage
 ```python
