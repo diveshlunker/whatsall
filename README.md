@@ -53,9 +53,11 @@ Follow the below instructions for easy use of this library
                                             
     5. number(number,country_code) - Instead of list, individual number can be sent.
     
-    6. speed(time_in_seconds) - send time in seconds - increase if your internet is slow in order to send message properly.
+    6. send_message() - Will start sending messages
     
-    7. stop() - use this function to stop messaging and close the chrome driver
+    7. speed(time_in_seconds) - send time in seconds - increase if your internet is slow in order to send message properly.
+    
+    8. stop() - use this function to stop messaging and close the chrome driver
     
     ------------------------------------------------------------------------------------------------------------------------
     
@@ -69,7 +71,19 @@ Follow the below instructions for easy use of this library
     
     
 ```
-        
+
+## Sample Code
+
+```python
+
+import whatsall.whatsall as whatsall
+whatsall.start()
+whatsall.numbers([98845*****,86456*****],91) #add as many numbers as you want in list
+whatsall.message(["Hey, Divesh here, just wanted to ask if whatsall worked properly?"]) #add as many messages as you wish in the list
+whatsall.send_message()
+
+```
+
 ## Terms and Conditions
 - This library is unofficial and is no way responsible for any legal issues if happen.
 - This library should not be used for any illeagal purpose and is made merely for education purpose and for development.
