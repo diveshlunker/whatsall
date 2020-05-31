@@ -95,7 +95,7 @@ whatsall.send_message()
 Pull requests are welcome. 
 
 ## Version
-Stable version - 1
+Stable version - 1.1.1
 
 ## License
 [MIT](https://github.com/diveshlunker/whatsall/blob/master/LICENSE)
