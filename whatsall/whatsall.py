@@ -10,6 +10,7 @@ c=1
 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
 import time
 import os
 
@@ -124,8 +125,13 @@ def send_message():
             time.sleep(ini_time)
             ini_time = 5
             input_box = driver.find_element_by_xpath('//*[@id="main"]/footer/div[1]/div[2]/div/div[2]')
-            for j in messages:
-                input_box.send_keys(j)
+            
+            shift_enter = ActionChains(driver).key_down(Keys.SHIFT).key_down(Keys.ENTER).key_up(Keys.SHIFT).key_up(Keys.ENTER)
+            for message in messages:
+                parts = message.split("\n")
+                for part in parts:
+                    input_box.send_keys(part)
+                    shift_enter.perform()
                 input_box.send_keys(Keys.ENTER)
             time.sleep(3)
     else:
