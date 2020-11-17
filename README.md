@@ -96,7 +96,6 @@ whatsall.send_message()
 
 ## Contributing
 Pull requests are welcome. <br>
-Thanks [Codenomous](https://codenomous.wordpress.com/2020/06/28/whatsall-whatsapp-sutomation-bulk/) for writing a blog on my library and infact starting your blog with my library.
 
 ## Version
 Stable version - 1.1.1
