@@ -73,6 +73,7 @@ def csv_numbers(csv_location, country_code = None):
                 contacts.append(str(country_code)+str(phone_number))
             
     else:
+<<<<<<< HEAD
         
         for i in range(len(rows)):
             
@@ -117,6 +118,31 @@ def send_message(phone_numbers = None, country_code = None, list_messages = None
         messages = messages_csv(csv_messages_location)
     if(driver_location):
         driver = startdriver(driver_location)
+=======
+        print("Please start the library before executing further commands. Thank you:)")
+    
+def send_message():
+    if(total_check):
+        global contacts
+        global messages
+        global ini_time
+        ini_time = 20
+        for i in contacts:
+            print("https://web.whatsapp.com/send?phone="+str(i)+"&text&source&data&app_absent")
+            driver.get("https://web.whatsapp.com/send?phone="+str(i)+"&text&source&data&app_absent")
+            time.sleep(ini_time)
+            ini_time = 5
+            input_box = driver.find_element_by_xpath('//*[@id="main"]/footer/div[1]/div[2]/div/div[2]')
+            
+            shift_enter = ActionChains(driver).key_down(Keys.SHIFT).key_down(Keys.ENTER).key_up(Keys.SHIFT).key_up(Keys.ENTER)
+            for message in messages:
+                parts = message.split("\n")
+                for part in parts:
+                    input_box.send_keys(part)
+                    shift_enter.perform()
+                input_box.send_keys(Keys.ENTER)
+            time.sleep(3)
+>>>>>>> 206b5d31b0b311c05957a5a0559652d5b7b35673
     else:
         driver = startdriver()
     
