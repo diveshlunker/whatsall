@@ -41,7 +41,7 @@ Pull requests are appreciated. <br>
 
 ## Version
 Stable version - 2.0
-Previous Stable Version - 1.1.1
+Previous Stable Version - 1
 
 ## License
 [MIT](https://github.com/diveshlunker/whatsall/blob/master/LICENSE)
