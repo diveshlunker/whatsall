@@ -1,7 +1,7 @@
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fdiveshlunker%2Fwhatsall&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://pypi.org/project/whatsall/)
 <br>
 
-# whatsAll
+# whatsAll - 2.0
 WhatsAll is a Python library to automate sending messages to unlimited number of people without even saving the contact number.
 
 ## Installation
@@ -23,69 +23,11 @@ pip install selenium
 - No need to save the contact in order to message the user.
 - Send messages to people of any country just by specifying the country code.
 - You can add multiple messages.
-
-## Features to be added
-- Enabling media and document share to people.
-- Instead of a list as parameter for messages and contact numbers, reading different documents and retreiving the numbers.
-- Handling errors in case the internet is slow or the number is invalid.
+- Send Media and documents to multiple people.
+- Use csv files to import message, phone numbers, images, documents to the library
 
 ## Usage
-```python
-import whatsall.whatsall as whatsall
-
-whatsall.helpdesk()
-```
-Calling helpdesk will list you all the features of the library and the detail flow of each function.
-```bash
-Follow the below instructions for easy use of this library
-    
-    1. start([location of chrome driver]) - use this function to start whatsall - If all the libraries are properly
-                                            installed, you can proceed further. The parameter is optional. 
-                                            The default location of driver is:- C:\Drivers\chromeDriver\chromedriver.exe
-                                            If you save the driver in the particular location, sending location of driver 
-                                            each time won't be required.
-    
-    2. startWeb(number,country_code) - send the number from which you wish to send for a trial purpose.
-    
-    3. message(list_message) - Use this function in order to set the message to be sent.
-                               A list should be sent containing the message with each value 
-                               in list depicting a new line of message
-    
-    4. numbers(list_numbers,country_code) - send the list of numbers whom you wish to send message with country_code
-                                            as second parameter
-                                            
-    5. number(number,country_code) - Instead of list, individual number can be sent.
-    
-    6. send_message() - Will start sending messages
-    
-    7. speed(time_in_seconds) - send time in seconds - increase if your internet is slow in order to send message properly.
-    
-    8. stop() - use this function to stop messaging and close the chrome driver
-    
-    ------------------------------------------------------------------------------------------------------------------------
-    
-    Additional Functionality will be added soon.
-    Feel free to contribute to the library.
-    
-    Contact developer @:-
-        Gmail - ndiveshjain@gmail.com
-        Github - @diveshlunker
-        Linkedin - @divesh-jain-652973145
-    
-    
-```
-
-## Sample Code
-
-```python
-
-import whatsall.whatsall as whatsall
-whatsall.start()
-whatsall.numbers([98845*****,86456*****],91) #add as many numbers as you want in list
-whatsall.message(["Hey, Divesh here, just wanted to ask if whatsall worked properly?"]) #add as many messages as you wish in the list
-whatsall.send_message()
-
-```
+It will be updated soon which syncs with latest relase of whatsall.
 
 ## Terms and Conditions
 - This library is unofficial and is no way responsible for any legal issues if happen.
@@ -95,10 +37,11 @@ whatsall.send_message()
 
 
 ## Contributing
-Pull requests are welcome. <br>
+Pull requests are appreciated. <br>
 
 ## Version
-Stable version - 1.1.1
+Stable version - 2.0
+Previous Stable Version - 1.1.1
 
 ## License
 [MIT](https://github.com/diveshlunker/whatsall/blob/master/LICENSE)
