@@ -1,0 +1,10 @@
+README.rst
+setup.cfg
+setup.py
+whatsall/__init__.py
+whatsall/whatsall.py
+whatsall.egg-info/PKG-INFO
+whatsall.egg-info/SOURCES.txt
+whatsall.egg-info/dependency_links.txt
+whatsall.egg-info/requires.txt
+whatsall.egg-info/top_level.txt

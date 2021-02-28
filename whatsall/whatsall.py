@@ -1,189 +1,350 @@
-location = "C:\Drivers\chromeDriver\chromedriver.exe"
-ini_time = 5
-total_check = False
-messages=[]
-contacts = []
-munum = "0"
-country_code = "91"
-driver="" 
-c=1
-
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
 import time
 import os
+import csv
 
-def requirements_check(l):
-    global c
-    try:
-        from selenium import webdriver
-        from selenium.webdriver.common.keys import Keys
-        import time
-        import os
-        return(1)
-    except:
-        print("Install all the required libraries using 'pip install -r requirements.txt'")
-        return(0)
-
-def driver_check(s):
-    my_file = os.path.exists(s)
-    if my_file:
+location_driver = ""
+def driver_check(location):
+    driver_file = os.path.exists(location)
+    if driver_file:
+        global location_driver
+        location_driver = location
         return True
     else:
         print("Download the Chrome driver exe file -> unzip it -> see the location -> continue.")
+        return False
 
-def startdriver(location):
-    global driver
-    driver = webdriver.Chrome(executable_path=str(location))
-
-    
-def total_check(diff_location):
-    global location
-    location = diff_location
-    check = requirements_check(["time","os","sys","selenium","urllib","pathlib"])
-    if(check==0):
-        print("Thank you!")
+def startdriver(location = "c://drivers//chromeDriver//chromedriver.exe"):
+    if(driver_check(location)):
+        driver = webdriver.Chrome(executable_path=str(location))
+        return driver
     else:
-        check2 = driver_check(location)
-        if(check2):
-            startdriver(location)
-        else:
-            print("Download the Chrome driver exe file and unzip it and save it and then continue.")
+        print("Error while launching chrome!!")
+        return None
+
+def add_numbers(phone_numbers, country_code):
+    contacts = []
+    country_code = country_code.strip("")
+    country_code = country_code.strip("+")
+    country_code = country_code.strip("\n")
     
-        if(check==1 and check2):
-            return True
-    
-
-def start(diff_location="C:\Drivers\chromeDriver\chromedriver.exe"):
-    global total_check
-    total_check = total_check(diff_location)
-
-
+    for number in phone_numbers:
+        number = number.strip("\n")
+        number = number.strip("")
+        number = str(country_code)+str(number)
+        contacts.append(number)
         
-def helpdesk(self):
-    print("-------------------------------------------------------------------------")
-    print("Welcome to Whatsapp Automated Messaging Library - WhatsAll")
-    print("Developed by Divesh Lunker")
-    print("Contribute @diveshlunker/whatsall on github")
-    print("-------------------------------------------------------------------------")
-    print("This library is totally unofficial and use it totally at your own risk")
-    print("We do not take any responsibility for anything if goes wrong")
-    print("--------------------------------------------------------------------------")
-    print(""" 
-    Follow the below instructions for easy use of this library
-    
-    1. start([location of chrome driver]) - use this function to start whatsall - If all the libraries are properly
-                                            installed, you can proceed further. The parameter is optional. 
-                                            The default location of driver is:- C:\Drivers\chromeDriver\chromedriver.exe
-                                            If you save the driver in the particular location, sending location of driver 
-                                            each time won't be required.
-    
-    2. startWeb(number,country_code) - send the number from which you wish to send for a trial purpose.
-    
-    3. message(list_message) - Use this function in order to set the message to be sent.
-                               A list should be sent containing the message with each value 
-                               in list depicting a new line of message
-    
-    4. numbers(list_numbers,country_code) - send the list of numbers whom you wish to send message with country_code
-                                            as second parameter
-                                            
-    5. number(number,country_code) - Instead of list, individual number can be sent.
-    
-    6. speed(time_in_seconds) - send time in seconds - increase if your internet is slow in order to send message properly.
-    
-    7. stop() - use this function to stop messaging and close the chrome driver
-    
-    ------------------------------------------------------------------------------------------------------------------------
-    
-    Additional Functionality will be added soon.
-    Feel free to contribute to the library.
-    
-    Contact developer @:-
-        Gmail - ndiveshjain@gmail.com
-        Github - @diveshlunker
-        Linkedin - @divesh-jain-652973145
-    
-    """)
-    
-def message(list_message):
-    if(total_check):
-        global messages
-        messages = list_message
-    else:
-        print("Please start the library before executing further commands. Thank you:)")
-    
-def send_message():
-    if(total_check):
-        global contacts
-        global messages
-        global ini_time
-        ini_time = 20
-        for i in contacts:
-            print("https://web.whatsapp.com/send?phone="+str(i)+"&text&source&data&app_absent")
-            driver.get("https://web.whatsapp.com/send?phone="+str(i)+"&text&source&data&app_absent")
-            time.sleep(ini_time)
-            ini_time = 5
-            input_box = driver.find_element_by_xpath('//*[@id="main"]/footer/div[1]/div[2]/div/div[2]')
-            for j in messages:
-                input_box.send_keys(j)
-                input_box.send_keys(Keys.ENTER)
-            time.sleep(3)
-    else:
-        print("Please start the library before executing further commands. Thank you:)")
+    return contacts
         
-        
+def add_messages(message):
+    messages = []
+    messages = message
     
-def numbers(list_numbers,countrycode):
-    if(total_check):
-        global contacts
-        for i in list_numbers:
-            i=str(i)
-            i=i.strip()
-            i = str(i)
-            countrycode2 = str(countrycode)
-            countrycode2 = countrycode2.strip("+")
-            i = countrycode2+i
-            contacts.append(i)
-    else:
-        print("Please start the library before executing further commands. Thank you:)")
+    return messages
     
-def number(number,countrycode):
-    if(total_check):
-        global contacts
-        countrycode2 = str(countrycode)
-        countrycode2.strip("+")
-        num = str(number)
-        num = num.strip()
-        num = countrycode+num
-        contacts.append(num)
-    else:
-        print("Please start the library before executing further commands. Thank you:)")
-        
-def speed(time):
-    if(total_check):
-        global ini_time
-        ini_time = time
-    else:
-        print("Please start the library before executing further commands. Thank you:)")
-        
-def startWeb(number,countrycode):
-    if(total_check):
-        global country_code
-        global mynum
-        global contacts
-        country_code = countrycode
-        mynum = number
-        country_code = str(country_code)
-        country_code.strip("+")
-        mynum = str(mynum)
-        mynum = country_code+mynum
-        contacts.append(mynum)
-    else:
-        print("Please start the library before executing further commands. Thank you:)")
+def csv_numbers(csv_location, country_code = None):
+    
+    fields = [] 
+    rows = [] 
+    contacts = []
 
-def stop():
-    global driver
-    global total_check
-    driver.close()
-    total_check = False
+    with open(csv_location, 'r') as csvfile: 
 
+        csvreader = csv.reader(csvfile) 
+    
+        for row in csvreader: 
+            rows.append(row) 
+  
+    if (country_code):
+         for i in range(len(rows)):
+            if(i>0):
+                
+                phone_number = rows[i][0]
+
+                phone_number = phone_number.strip(" ")
+                phone_number = phone_number.strip("\n")
+                phone_number = phone_number.strip("+")
+                country_code = country_code.strip("+")
+                country_code = country_code.strip(" ")
+                country_code = country_code.strip("\n")
+
+                contacts.append(str(country_code)+str(phone_number))
+            
+    else:
+        
+        for i in range(len(rows)):
+            
+            if(i>0):
+                phone_number = rows[i][0]
+                country_code = rows[i][1]
+
+                phone_number = phone_number.strip(" ")
+                phone_number = phone_number.strip("\n")
+                phone_number = phone_number.strip("+")
+                country_code = country_code.strip("+")
+                country_code = country_code.strip(" ")
+                country_code = country_code.strip("\n")
+
+                contacts.append(str(country_code)+str(phone_number))
+    
+    return contacts
+
+def messages_csv(csv_location):
+    messages = []
+    
+    with open(csv_location, 'r') as csvfile: 
+
+        csvreader = csv.reader(csvfile) 
+    
+        for row in csvreader: 
+            messages.append(row)
+    
+    return messages
+
+def send_message(phone_numbers = None, country_code = None, list_messages = None, csv_numbers_location = None, csv_messages_location = None, driver_location = None):
+    
+    if(phone_numbers and country_code):
+        contacts = add_numbers(phone_numbers, country_code)
+    if(list_messages):
+        messages = add_messages(list_messages)
+    if(csv_numbers_location and country_code):
+        contacts = csv_numbers(csv_numbers_location, country_code)
+    if(csv_numbers_location and not country_code):
+        contacts = csv_numbers(csv_numbers_location)
+    if(csv_messages_location):
+        messages = messages_csv(csv_messages_location)
+    if(driver_location):
+        driver = startdriver(driver_location)
+    else:
+        driver = startdriver()
+    
+    if(len(contacts)>0 and len(messages)>0 and driver):
+        
+        driver.get("https://web.whatsapp.com/")
+        time.sleep(15)
+        for num in contacts:
+            driver.get("https://web.whatsapp.com/send?phone="+str(num)+"&text&source&data&app_absent")
+            time.sleep(10)
+        
+            try:
+                input_box = driver.find_element_by_xpath('//*[@id="main"]/footer/div[1]/div[2]/div/div[2]')
+
+                shift_enter = ActionChains(driver).key_down(Keys.SHIFT).key_down(Keys.ENTER).key_up(Keys.SHIFT).key_up(Keys.ENTER)
+                for message in messages:
+                    parts = message.split("\n")
+                    for part in parts:
+                        input_box.send_keys(part)
+                        shift_enter.perform()
+                    input_box.send_keys(Keys.ENTER)
+                time.sleep(3)
+            
+            except:
+                ok_button = driver.find_element_by_xpath('//*[@id="app"]/div/span[2]/div/span/div/div/div/div/div/div[2]/div')
+                ok_button.click()
+                print("Message not successfully sent to",str(num))
+                time.sleep(3)
+                
+                
+def add_images(list_images):
+    images = []
+    for image in list_images:
+        image.strip("\n")
+        image.strip(" ")
+        images.append(image)
+    
+    return images
+
+def images_csv(csv_location):
+    images = []
+    
+    with open(csv_location, 'r') as csvfile: 
+        csvreader = csv.reader(csvfile) 
+    
+        for row in csvreader: 
+            images.append(row)
+    
+    return images
+
+
+def send_image(phone_numbers = None, country_code = None, list_images = None, csv_numbers_location = None, csv_images_location = None, driver_location = None):
+       
+    contacts = []
+    images = []
+    
+    if(phone_numbers and country_code):
+        contacts = add_numbers(phone_numbers, country_code)
+    if(list_images):
+        images = add_images(list_images)
+    if(csv_numbers_location and country_code):
+        contacts = csv_numbers(csv_numbers_location, country_code)
+    if(csv_numbers_location and not country_code):
+        contacts = csv_numbers(csv_numbers_location)
+    if(csv_images_location):
+        images = images_csv(csv_images_location)
+    if(driver_location):
+        driver = startdriver(driver_location)
+    elif(driver_location==None):
+        driver = startdriver()
+    
+    if(len(contacts)>0 and len(images)>0 and driver):
+        
+        driver.get("https://web.whatsapp.com/")
+        time.sleep(15)
+        
+        for num in contacts:
+            driver.get("https://web.whatsapp.com/send?phone="+str(num)+"&text&source&data&app_absent")
+            time.sleep(10)
+            
+            try:
+                for image_path in images:
+
+                    attachment_box = driver.find_element_by_xpath('//div[@title = "Attach"]')
+                    attachment_box.click()
+
+                    image_box = driver.find_element_by_xpath('//input[@accept="image/*,video/mp4,video/3gpp,video/quicktime"]')
+                    image_box.send_keys(image_path)
+
+                    time.sleep(3)
+
+                    send_button = driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/span/div/span/div/div/div[2]/span/div/div/span')
+                    send_button.click()
+            except:
+                ok_button = driver.find_element_by_xpath('//*[@id="app"]/div/span[2]/div/span/div/div/div/div/div/div[2]/div')
+                ok_button.click()
+                print("Message not successfully sent to",str(num))
+                time.sleep(3)
+
+def add_docs(list_docs):
+    documents = []
+    for doc in list_docs:
+        doc.strip("\n")
+        doc.strip(" ")
+        documents.append(doc)
+    return documents
+
+def docs_csv(csv_location):
+    documents = []
+    
+    with open(csv_location, 'r') as csvfile: 
+        csvreader = csv.reader(csvfile) 
+    
+        for row in csvreader: 
+            documents.append(row)
+    return documents
+
+
+def send_documents(phone_numbers = None, country_code = None, list_documents = None, csv_numbers_location = None, csv_documents_location = None, driver_location = None):
+    
+    documents = []
+    
+    if(phone_numbers and country_code):
+        contacts = add_numbers(phone_numbers, country_code)
+    if(list_documents):
+        documents = add_docs(list_documents)
+    if(csv_numbers_location and country_code):
+        contacts = csv_numbers(csv_numbers_location, country_code)
+    if(csv_numbers_location and not country_code):
+        contacts = csv_numbers(csv_numbers_location)
+    if(csv_documents_location):
+        documents = docs_csv(csv_documents_location)
+    if(driver_location):
+        driver = startdriver(driver_location)
+    elif(driver_location==None):
+        driver = startdriver()
+    
+    if(len(contacts)>0 and len(documents)>0 and driver):
+        
+        driver.get("https://web.whatsapp.com/")
+        time.sleep(15)
+        
+        for num in contacts:
+            driver.get("https://web.whatsapp.com/send?phone="+str(num)+"&text&source&data&app_absent")
+            time.sleep(10)
+            
+            
+            try:
+                for doc_path in documents:
+
+                    attachment_box = driver.find_element_by_xpath('//div[@title = "Attach"]')
+                    attachment_box.click()
+
+                    image_box = driver.find_element_by_xpath('//input[@accept="*"]')
+                    image_box.send_keys(doc_path)
+
+                    time.sleep(3)
+
+                    send_button = driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/span/div/span/div/div/div[2]/span/div/div/span')
+
+                    send_button.click()
+            except:
+                ok_button = driver.find_element_by_xpath('//*[@id="app"]/div/span[2]/div/span/div/div/div/div/div/div[2]/div')
+                ok_button.click()
+                print("Message not successfully sent to",str(num))
+                time.sleep(3)
+
+def send_customized_message(messages = None, csv_custom_messages_location = None, country_code = None, driver_location = None):
+    
+    fields = [] 
+    rows = [] 
+    
+    if(driver_location):
+        driver = startdriver(driver_location)
+    else:
+        driver = startdriver()
+    
+    driver.get("https://web.whatsapp.com/")
+    time.sleep(15)
+    
+    with open(csv_custom_messages_location, 'r') as csvfile: 
+
+        csvreader = csv.reader(csvfile) 
+    
+        for row in csvreader: 
+            rows.append(row)
+        
+        if(country_code):
+            header = rows[0]
+            print(header)
+            s = ""
+            for i in range(len(rows)):
+                if(i>0):
+                    num = rows[i][0]
+                    num = country_code+num
+                    s = ""
+                    for message in messages:
+                        modified_message = message.split(" ")
+                        for j in range(len(header)):
+                            if(j>0):
+                                if("%"+str(header[j])+"%" in modified_message):
+                                    
+                                    for item_position in range(len(modified_message)):
+                                        if(modified_message[item_position]=="%"+str(header[j])+"%"):
+                                            modified_message[item_position] = rows[i][j]
+                                    
+                                    
+                        modified_message = " ".join(modified_message)                        
+                        
+                        driver.get("https://web.whatsapp.com/send?phone="+str(num)+"&text&source&data&app_absent")
+                        time.sleep(10)
+                        
+                        try:
+                            input_box = driver.find_element_by_xpath('//*[@id="main"]/footer/div[1]/div[2]/div/div[2]')
+
+                            shift_enter = ActionChains(driver).key_down(Keys.SHIFT).key_down(Keys.ENTER).key_up(Keys.SHIFT).key_up(Keys.ENTER)
+
+                            parts = modified_message.split("\n")
+                            for part in parts:
+                                input_box.send_keys(part)
+                                shift_enter.perform()
+                            input_box.send_keys(Keys.ENTER)
+                            time.sleep(3)
+                        
+                        except:
+                            ok_button = driver.find_element_by_xpath('//*[@id="app"]/div/span[2]/div/span/div/div/div/div/div/div[2]/div')
+                            ok_button.click()
+                            print("Message not successfully sent to",str(num))
+                            time.sleep(3)
+                            
+send_message(phone_numbers=["9884"],country_code = "91", list_messages=["hello","here i am"])
