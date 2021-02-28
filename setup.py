@@ -1,22 +1,15 @@
 from setuptools import setup, Extension
-try:
-   import pypandoc
-   description = pypandoc.convert_file('README.md', 'rst')
-   description = description.replace("\r","")
-except (IOError, ImportError):
-   description = open('README.md').read()
 
 setup(
   name = 'whatsall',         
   packages = ['whatsall'],   
-  version = '2.0',      
+  version = '2.4',      
   license='MIT',        
   description = 'Automate sending messages on whatsapp to unlimited users without even saving the number',
-  long_description = description,
   author = 'Divesh Lunker',             
   author_email = 'diveshdj92@gmail.com',      
   url = 'https://github.com/diveshlunker/whatsall',
-  download_url = 'https://github.com/diveshlunker/whatsall/archive/1.tar.gz',   
+  download_url = 'https://github.com/diveshlunker/whatsall/archive/2.tar.gz',   
   keywords = ['whatsapp', 'automated messaging', 'whatsapp web','whatspip'], 
   install_requires=[ 
           "selenium"

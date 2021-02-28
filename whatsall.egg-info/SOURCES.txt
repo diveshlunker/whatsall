@@ -1,4 +1,3 @@
-README.rst
 setup.cfg
 setup.py
 whatsall/__init__.py
