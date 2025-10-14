@@ -3,6 +3,7 @@
 
 # whatsAll - 2.0
 WhatsAll is a Python library to automate sending messages to unlimited number of people without even saving the contact number.
+[![PyPI Downloads](https://static.pepy.tech/personalized-badge/whatsall?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads)](https://pepy.tech/projects/whatsall)
 
 ## Installation
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install whatsall
